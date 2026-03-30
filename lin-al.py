@@ -49,14 +49,14 @@ def encrypt_message():
     msg = input("TYPE YOUR MESSAGE IN ALL CAPS: ")
     # print("Message:", msg)
 
-    scrambled_msg = []
+   encrypted_msg = []
 
     for letter in msg:
         for k,v in key.items():
             if letter == k:
-                scrambled_msg.append(v)
+               encrypted_msg.append(v)
                 # print(v)
-    print("scrambled message:", scrambled_msg)
-    return scrambled_msg
+    print("encrypted message:", encrypted_msg)
+    return encrypted_msg
 
 encrypt_message()
