@@ -1,22 +1,22 @@
 import numpy
 
-x = numpy.array([[1,3,1], [1,0,0] ])
-y = numpy.array([[0,0], [7,5], [1,1]])
+# x = numpy.array([[1,3,1], [1,0,0] ])
+# y = numpy.array([[0,0], [7,5], [1,1]])
 
-arr_1 = numpy.array([
-    [2,1,1],
-    [1,2,3]
-])
+# arr_1 = numpy.array([
+#     [2,1,1],
+#     [1,2,3]
+# ])
 
-arr_2 = numpy.array([
-    [0,2,3],
-    [4,0,0]
-])
+# arr_2 = numpy.array([
+#     [0,2,3],
+#     [4,0,0]
+# ])
 
-arr_3 = ([
-    [5,1,5],
-    [4,3,2]
-])
+# arr_3 = ([
+#     [5,1,5],
+#     [4,3,2]
+# ])
 
 encryption_matrix = [
     [2,5,5],
@@ -33,7 +33,7 @@ decryption_matrix = [
 key = {" ":0, "A":1, "B":2,"C":3, "D":4, "E":5, "F": 6, 'G':7, 'H':8, 'I':9, 'J':10, 'K':11, 'L':12, 'M':13, 'N':14, 'O':15,\
        'P':16, 'Q':17, 'R':18, 'S':19, 'T':20, 'U':21, 'V':22, 'W':23, 'X':24, 'Y':25, 'Z':26}
 
-msg = "EXPERIENCE"
+# msg = "EXPERIENCE"
 
 # for k,v in key.items():
 #     if v == 24:
@@ -41,8 +41,11 @@ msg = "EXPERIENCE"
 #     else:
 #         print("Not X")
 
+msg = input("TYPE YOUR MESSAGE IN ALL CAPS: ")
+print("Message:", msg)
+
 def encrypt_message(msg):
-    print(msg)
+    print("message in encrypt message function:", msg)
 
     scrambled_msg = []
 
@@ -50,7 +53,7 @@ def encrypt_message(msg):
         for k,v in key.items():
             if letter == k:
                 scrambled_msg.append(v)
-                print(v)
-    print(scrambled_msg)
+                # print(v)
+    print("scrambled message:", scrambled_msg)
 
 encrypt_message(msg)
