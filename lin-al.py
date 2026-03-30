@@ -41,11 +41,13 @@ key = {" ":0, "A":1, "B":2,"C":3, "D":4, "E":5, "F": 6, 'G':7, 'H':8, 'I':9, 'J'
 #     else:
 #         print("Not X")
 
-msg = input("TYPE YOUR MESSAGE IN ALL CAPS: ")
-print("Message:", msg)
 
-def encrypt_message(msg):
-    print("message in encrypt message function:", msg)
+
+
+def encrypt_message():
+    # print("message in encrypt message function:", msg)
+    msg = input("TYPE YOUR MESSAGE IN ALL CAPS: ")
+    # print("Message:", msg)
 
     scrambled_msg = []
 
@@ -55,5 +57,6 @@ def encrypt_message(msg):
                 scrambled_msg.append(v)
                 # print(v)
     print("scrambled message:", scrambled_msg)
+    return scrambled_msg
 
-encrypt_message(msg)
+encrypt_message()
