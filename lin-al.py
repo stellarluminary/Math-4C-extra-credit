@@ -18,22 +18,39 @@ arr_3 = ([
     [4,3,2]
 ])
 
-# print(arr_1)
-# print(arr_2)
+encryption_matrix = [
+    [2,5,5],
+    [-1,-1,0],
+    [2,4,3]
+]
 
-# print(arr_1+arr_2)
-
-# try:
-#     x+y
-# except:
-#     print("Can only add matrices of the same size.")
+decryption_matrix = [
+    [3,-5,-5],
+    [-3,4,5],
+    [2,-2,-3]
+]
 
 key = {" ":0, "A":1, "B":2,"C":3, "D":4, "E":5, "F": 6, 'G':7, 'H':8, 'I':9, 'J':10, 'K':11, 'L':12, 'M':13, 'N':14, 'O':15,\
        'P':16, 'Q':17, 'R':18, 'S':19, 'T':20, 'U':21, 'V':22, 'W':23, 'X':24, 'Y':25, 'Z':26}
 
-for k,v in key.items():
-    if v == 24:
-        print(k)
-    else:
-        print("Not Xß")
+msg = "EXPERIENCE"
 
+# for k,v in key.items():
+#     if v == 24:
+#         print(k)
+#     else:
+#         print("Not X")
+
+def encrypt_message(msg):
+    print(msg)
+
+    scrambled_msg = []
+
+    for letter in msg:
+        for k,v in key.items():
+            if letter == k:
+                scrambled_msg.append(v)
+                print(v)
+    print(scrambled_msg)
+
+encrypt_message(msg)
