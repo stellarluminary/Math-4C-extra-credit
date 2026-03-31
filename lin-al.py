@@ -49,7 +49,7 @@ def encrypt_message():
     msg = input("TYPE YOUR MESSAGE IN ALL CAPS: ")
     # print("Message:", msg)
 
-   encrypted_msg = []
+    encrypted_msg = []
 
     for letter in msg:
         for k,v in key.items():
