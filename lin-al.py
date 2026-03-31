@@ -23,50 +23,52 @@ key = {" ":0, "A":1, "B":2,"C":3, "D":4, "E":5, "F": 6, 'G':7, 'H':8, 'I':9, 'J'
 #     else:
 #         print("Not X")
 
-def encrypt_message():
+def numerize_message():
     # print("message in encrypt message function:", msg)
     msg = input("TYPE YOUR MESSAGE IN ALL CAPS: ")
     # print("Message:", msg)
 
-    encrypted_msg = []
+    numerized_msg = []
 
     for letter in msg:
         for k,v in key.items():
             if letter == k:
-               encrypted_msg.append(v)
+               numerized_msg.append(v)
                 # print(v)
-    # print("encrypted message:", encrypted_msg)
-    return encrypted_msg
+    # print("numerized message:", numerized_msg)
+    return numerized_msg
 
-def vectorize_encrypted_msg(encrypted_msg):
-    print("Turn encrypted message into a list of 3x1 vectors.")
+
+def vectorize_numerized_msg(numerized_msg):
+    print("Turn numerized message into a list of 3x1 vectors.")
     list_of_vectors = []
-    # length_of_encrypted_msg = len(encrypted_msg)
+    # length_of_numerized_msg = len(numerized_msg)
 
-    # for i in range(0, length_of_encrypted_msg, 3):
-    while len(encrypted_msg) > 0:
-        # Steps through every three numbers in encrypted_msg
-        # print(encrypted_msg[i])
+    # for i in range(0, length_of_numerized_msg, 3):
+    while len(numerized_msg) > 0:
+        # Steps through every three numbers in numerized_msg
+        # print(numerized_msg[i])
         vector = []
-        vector.append(encrypted_msg.pop(0))
-        if len(encrypted_msg) == 0:
+        vector.append(numerized_msg.pop(0))
+        if len(numerized_msg) == 0:
             vector.append(0)
             vector.append(0)
             print("vector (1st if)", vector)
             
-        elif len(encrypted_msg) == 1:
-            vector.append(encrypted_msg.pop(0))
+        elif len(numerized_msg) == 1:
+            vector.append(numerized_msg.pop(0))
             vector.append(0)
             print("vector (2nd if)", vector)
             
         else:
-            vector.append(encrypted_msg.pop(0))
-            vector.append(encrypted_msg.pop(0))
+            vector.append(numerized_msg.pop(0))
+            vector.append(numerized_msg.pop(0))
         list_of_vectors.append(vector)
 
         
-    print("empty encrypted_msg", encrypted_msg)
+    print("empty numerized_msg", numerized_msg)
     print("final list of vectors", list_of_vectors)
+    return list_of_vectors
 
 
     # while len(encrypted_msg) > 0:
@@ -90,10 +92,11 @@ def vectorize_encrypted_msg(encrypted_msg):
     # print("list of vectors", list_of_vectors)
 
 
+# def decrypt_message(list_of_vectors):
+#     print("Decrypting message . . .")
+#     decrypted_msg = []
+#     for i in range(len(list_of_vectors)):
 
 
-def decrypt_message():
-    print("Decrypting message . . .")
-
-encrypted_msg = encrypt_message()
-vectorize_encrypted_msg(encrypted_msg)
+numerized_msg = numerize_message()
+list_of_vectors = vectorize_numerized_msg(numerized_msg)
