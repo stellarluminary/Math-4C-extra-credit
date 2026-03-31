@@ -1,23 +1,5 @@
 import numpy
 
-# x = numpy.array([[1,3,1], [1,0,0] ])
-# y = numpy.array([[0,0], [7,5], [1,1]])
-
-# arr_1 = numpy.array([
-#     [2,1,1],
-#     [1,2,3]
-# ])
-
-# arr_2 = numpy.array([
-#     [0,2,3],
-#     [4,0,0]
-# ])
-
-# arr_3 = ([
-#     [5,1,5],
-#     [4,3,2]
-# ])
-
 encryption_matrix = [
     [2,5,5],
     [-1,-1,0],
@@ -41,9 +23,6 @@ key = {" ":0, "A":1, "B":2,"C":3, "D":4, "E":5, "F": 6, 'G':7, 'H':8, 'I':9, 'J'
 #     else:
 #         print("Not X")
 
-
-
-
 def encrypt_message():
     # print("message in encrypt message function:", msg)
     msg = input("TYPE YOUR MESSAGE IN ALL CAPS: ")
@@ -59,4 +38,39 @@ def encrypt_message():
     print("encrypted message:", encrypted_msg)
     return encrypted_msg
 
-encrypt_message()
+def vectorize_encrypted_msg(encrypted_msg):
+    print("Turn encrypted message into a list of 3x1 vectors.")
+    list_of_vectors = []
+
+    # for i in range(0, len(encrypted_msg), 3):
+    #     # Steps through every three numbers in encrypted_msg
+    #     print(encrypted_msg[i])
+    #     vector = []
+    while len(encrypted_msg) > 0:
+        vector = []
+        if len(encrypted_msg) % 3 == 1:
+            vector.append(encrypted_msg.pop(0))
+            vector.append(0)
+            vector.append(0)
+            list_of_vectors.append(vector)
+        elif len(encrypted_msg) % 3 == 2:
+            vector.append(encrypted_msg.pop(0))
+            vector.append(encrypted_msg.pop(0))
+            vector.append(0)
+            list_of_vectors.append(vector)
+        elif len(encrypted_msg) % 3 == 0:
+            vector.append(encrypted_msg.pop(0))
+            vector.append(encrypted_msg.pop(0))
+            vector.append(encrypted_msg.pop(0))
+            list_of_vectors.append(vector)
+    print("encrypted_msg", encrypted_msg)
+    print("list of vectors", list_of_vectors)
+
+
+
+
+def decrypt_message():
+    print("Decrypting message . . .")
+
+encrypted_msg = encrypt_message()
+vectorize_encrypted_msg(encrypted_msg)
