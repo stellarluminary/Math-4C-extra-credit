@@ -35,36 +35,59 @@ def encrypt_message():
             if letter == k:
                encrypted_msg.append(v)
                 # print(v)
-    print("encrypted message:", encrypted_msg)
+    # print("encrypted message:", encrypted_msg)
     return encrypted_msg
 
 def vectorize_encrypted_msg(encrypted_msg):
     print("Turn encrypted message into a list of 3x1 vectors.")
     list_of_vectors = []
+    # length_of_encrypted_msg = len(encrypted_msg)
 
-    # for i in range(0, len(encrypted_msg), 3):
-    #     # Steps through every three numbers in encrypted_msg
-    #     print(encrypted_msg[i])
-    #     vector = []
+    # for i in range(0, length_of_encrypted_msg, 3):
     while len(encrypted_msg) > 0:
+        # Steps through every three numbers in encrypted_msg
+        # print(encrypted_msg[i])
         vector = []
-        if len(encrypted_msg) % 3 == 1:
-            vector.append(encrypted_msg.pop(0))
+        vector.append(encrypted_msg.pop(0))
+        if len(encrypted_msg) == 0:
             vector.append(0)
             vector.append(0)
-            list_of_vectors.append(vector)
-        elif len(encrypted_msg) % 3 == 2:
-            vector.append(encrypted_msg.pop(0))
+            print("vector (1st if)", vector)
+            
+        elif len(encrypted_msg) == 1:
             vector.append(encrypted_msg.pop(0))
             vector.append(0)
-            list_of_vectors.append(vector)
-        elif len(encrypted_msg) % 3 == 0:
+            print("vector (2nd if)", vector)
+            
+        else:
             vector.append(encrypted_msg.pop(0))
             vector.append(encrypted_msg.pop(0))
-            vector.append(encrypted_msg.pop(0))
-            list_of_vectors.append(vector)
-    print("encrypted_msg", encrypted_msg)
-    print("list of vectors", list_of_vectors)
+        list_of_vectors.append(vector)
+
+        
+    print("empty encrypted_msg", encrypted_msg)
+    print("final list of vectors", list_of_vectors)
+
+
+    # while len(encrypted_msg) > 0:
+    #     vector = []
+    #     if len(encrypted_msg) % 3 == 1:
+    #         vector.append(encrypted_msg.pop(0))
+    #         vector.append(0)
+    #         vector.append(0)
+    #         list_of_vectors.append(vector)
+    #     elif len(encrypted_msg) % 3 == 2:
+    #         vector.append(encrypted_msg.pop(0))
+    #         vector.append(encrypted_msg.pop(0))
+    #         vector.append(0)
+    #         list_of_vectors.append(vector)
+    #     elif len(encrypted_msg) % 3 == 0:
+    #         vector.append(encrypted_msg.pop(0))
+    #         vector.append(encrypted_msg.pop(0))
+    #         vector.append(encrypted_msg.pop(0))
+    #         list_of_vectors.append(vector)
+    # print("encrypted_msg", encrypted_msg)
+    # print("list of vectors", list_of_vectors)
 
 
 
