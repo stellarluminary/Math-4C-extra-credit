@@ -53,12 +53,12 @@ def vectorize_numerized_msg(numerized_msg):
         if len(numerized_msg) == 0:
             vector.append(0)
             vector.append(0)
-            print("vector (1st if)", vector)
+            # print("vector (1st if)", vector)
             
         elif len(numerized_msg) == 1:
             vector.append(numerized_msg.pop(0))
             vector.append(0)
-            print("vector (2nd if)", vector)
+            # print("vector (2nd if)", vector)
             
         else:
             vector.append(numerized_msg.pop(0))
@@ -91,6 +91,35 @@ def vectorize_numerized_msg(numerized_msg):
     # print("encrypted_msg", encrypted_msg)
     # print("list of vectors", list_of_vectors)
 
+def encrypt_message(list_of_vectors):
+    '''
+    Encrypt the numerized and vectorized input text using the encryption_matrix.
+    '''
+    encrypted_list_of_vectors = []
+    for i in range(len(list_of_vectors)):
+        vector = []
+        # encrypted_list_of_vectors.append(numpy.dot(encryption_matrix, i))
+        print("i:", i)
+        print(list_of_vectors[i][0])
+        print(list_of_vectors[i][1])
+        print(list_of_vectors[i][2])
+
+        for j in range(len(encryption_matrix)):
+            print("index j of encryption_matrix:", j)
+            num = (list_of_vectors[i][0] * encryption_matrix[0][j]) + \
+                (list_of_vectors[i][1] * encryption_matrix[1][j]) + \
+                (list_of_vectors[i][2] * encryption_matrix[2][j])
+            vector.append(num)
+
+        # num = (list_of_vectors[i][0] * encryption_matrix[0][0]) + \
+        # (list_of_vectors[i][1] * encryption_matrix[1][0]) + \
+        # (list_of_vectors[i][2] * encryption_matrix[2][0])
+        # vector.append(num)
+        encrypted_list_of_vectors.append(vector)
+
+
+    print("encrypted_list_of_vectors", encrypted_list_of_vectors)
+    return encrypted_list_of_vectors
 
 # def decrypt_message(list_of_vectors):
 #     print("Decrypting message . . .")
@@ -100,3 +129,4 @@ def vectorize_numerized_msg(numerized_msg):
 
 numerized_msg = numerize_message()
 list_of_vectors = vectorize_numerized_msg(numerized_msg)
+encrypt_message(list_of_vectors)
