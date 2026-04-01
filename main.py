@@ -25,10 +25,11 @@ def main():
     #     else:
     #         print("Not X")
 
-    def numerize_message():
-        # print("message in encrypt message function:", msg)
+    def get_message():
         msg = input("TYPE YOUR MESSAGE IN ALL CAPS: ")
-        # print("Message:", msg)
+        return msg
+
+    def numerize_message(msg):
 
         numerized_msg = []
 
@@ -128,8 +129,8 @@ def main():
     #     decrypted_msg = []
     #     for i in range(len(list_of_vectors)):
 
-
-    numerized_msg = numerize_message()
+    msg = get_message()
+    numerized_msg = numerize_message(msg)
     list_of_vectors = vectorize_numerized_msg(numerized_msg)
     encrypt_message(list_of_vectors)
 
