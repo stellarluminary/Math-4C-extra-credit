@@ -26,7 +26,7 @@ def main():
     #         print("Not X")
 
     def get_message():
-        msg = input("TYPE YOUR MESSAGE IN ALL CAPS: ")
+        msg = input("TYPE YOUR MESSAGE IN ALL CAPS WITH NO PUNCTUATION: ")
         return msg
 
     def numerize_message(msg):
@@ -43,7 +43,7 @@ def main():
 
 
     def vectorize_numerized_msg(numerized_msg):
-        print("Turn numerized message into a list of 3x1 vectors.")
+        # print("Turn numerized message into a list of 1x3 vectors.")
         list_of_vectors = []
         # length_of_numerized_msg = len(numerized_msg)
 
@@ -69,30 +69,10 @@ def main():
             list_of_vectors.append(vector)
 
             
-        print("empty numerized_msg", numerized_msg)
-        print("final list of vectors", list_of_vectors)
+        # print("empty numerized_msg", numerized_msg)
+        # print("final list of vectors", list_of_vectors)
         return list_of_vectors
 
-
-        # while len(encrypted_msg) > 0:
-        #     vector = []
-        #     if len(encrypted_msg) % 3 == 1:
-        #         vector.append(encrypted_msg.pop(0))
-        #         vector.append(0)
-        #         vector.append(0)
-        #         list_of_vectors.append(vector)
-        #     elif len(encrypted_msg) % 3 == 2:
-        #         vector.append(encrypted_msg.pop(0))
-        #         vector.append(encrypted_msg.pop(0))
-        #         vector.append(0)
-        #         list_of_vectors.append(vector)
-        #     elif len(encrypted_msg) % 3 == 0:
-        #         vector.append(encrypted_msg.pop(0))
-        #         vector.append(encrypted_msg.pop(0))
-        #         vector.append(encrypted_msg.pop(0))
-        #         list_of_vectors.append(vector)
-        # print("encrypted_msg", encrypted_msg)
-        # print("list of vectors", list_of_vectors)
 
     def encrypt_message(list_of_vectors):
         '''
@@ -108,7 +88,7 @@ def main():
             print(list_of_vectors[i][2])
 
             for j in range(len(encryption_matrix)):
-                print("index j of encryption_matrix:", j)
+                # print("index j of encryption_matrix:", j)
                 num = (list_of_vectors[i][0] * encryption_matrix[0][j]) + \
                     (list_of_vectors[i][1] * encryption_matrix[1][j]) + \
                     (list_of_vectors[i][2] * encryption_matrix[2][j])
@@ -119,15 +99,48 @@ def main():
         print("encrypted_list_of_vectors", encrypted_list_of_vectors)
         return encrypted_list_of_vectors
 
-    # def decrypt_message(list_of_vectors):
-    #     print("Decrypting message . . .")
-    #     decrypted_msg = []
-    #     for i in range(len(list_of_vectors)):
+    def decrypt_message(encrypted_list_of_vectors):
+        print("Decrypting message . . .")
+        decrypted_list_of_vectors = []
+    
+        for i in range(len(encrypted_list_of_vectors)):
+            vector = []
+            # print("i:", i)
+            print(encrypted_list_of_vectors[i][0])
+            print(encrypted_list_of_vectors[i][1])
+            print(encrypted_list_of_vectors[i][2])
+
+            for j in range(len(decryption_matrix)):
+                # print("index j of decryption matrix:", j)
+                num = (encrypted_list_of_vectors[i][0] * decryption_matrix[0][j]) + \
+                    (encrypted_list_of_vectors[i][1] * decryption_matrix[1][j]) + \
+                    (encrypted_list_of_vectors[i][2] * decryption_matrix[2][j])
+                vector.append(num)
+
+            decrypted_list_of_vectors.append(vector)
+
+        # print("decrypted_list_of_vectors", decrypted_list_of_vectors)
+        return decrypted_list_of_vectors
+    
+    def translate_decrypted_message(decrypted_list_of_vectors):
+        translated_message = []
+        for i in range(len(decrypted_list_of_vectors)):
+            vector = []
+            for j in range(len(decrypted_list_of_vectors[i])):
+                for k,v in key.items():
+                    if decrypted_list_of_vectors[i][j] == key[k]:
+                        vector.append(k)
+            translated_message.append(vector)
+        print("translated message:", translated_message)
+        return translated_message
+
 
     msg = get_message()
     numerized_msg = numerize_message(msg)
     list_of_vectors = vectorize_numerized_msg(numerized_msg)
-    encrypt_message(list_of_vectors)
+    encrypted_list_of_vectors = encrypt_message(list_of_vectors)
+    decrypted_list_of_vectors = decrypt_message(encrypted_list_of_vectors)
+    translated_message = translate_decrypted_message(decrypted_list_of_vectors)
 
 if __name__ == "__main__":
     main()
