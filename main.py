@@ -114,12 +114,7 @@ def main():
                     (list_of_vectors[i][2] * encryption_matrix[2][j])
                 vector.append(num)
 
-            # num = (list_of_vectors[i][0] * encryption_matrix[0][0]) + \
-            # (list_of_vectors[i][1] * encryption_matrix[1][0]) + \
-            # (list_of_vectors[i][2] * encryption_matrix[2][0])
-            # vector.append(num)
             encrypted_list_of_vectors.append(vector)
-
 
         print("encrypted_list_of_vectors", encrypted_list_of_vectors)
         return encrypted_list_of_vectors
