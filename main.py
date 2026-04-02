@@ -123,8 +123,15 @@ def main():
                     if decrypted_list_of_vectors[i][j] == key[k]:
                         vector.append(k)
             translated_message.append(vector)
-        print("Decrypted message:", translated_message)
+        # print("Decrypted message:", translated_message)
         return translated_message
+
+    def convert_matrix_to_str(translated_message):
+        text = ""
+        for i in range(len(translated_message)):
+            for j in range(len(translated_message[i])):
+                text += translated_message[i][j]
+        print("Decrypted message:", text)
 
 
     msg = get_message()
@@ -133,6 +140,7 @@ def main():
     encrypted_list_of_vectors = encrypt_message(list_of_vectors)
     decrypted_list_of_vectors = decrypt_message(encrypted_list_of_vectors)
     translated_message = translate_decrypted_message(decrypted_list_of_vectors)
+    text = convert_matrix_to_str(translated_message)
 
 if __name__ == "__main__":
     main()
