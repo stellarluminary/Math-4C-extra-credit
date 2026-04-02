@@ -17,13 +17,6 @@ def main():
     key = {" ":0, "A":1, "B":2,"C":3, "D":4, "E":5, "F": 6, 'G':7, 'H':8, 'I':9, 'J':10, 'K':11, 'L':12, 'M':13, 'N':14, 'O':15,\
         'P':16, 'Q':17, 'R':18, 'S':19, 'T':20, 'U':21, 'V':22, 'W':23, 'X':24, 'Y':25, 'Z':26}
 
-    # msg = "EXPERIENCE"
-
-    # for k,v in key.items():
-    #     if v == 24:
-    #         print(k)
-    #     else:
-    #         print("Not X")
 
     def get_message():
         msg = input("TYPE YOUR MESSAGE IN ALL CAPS WITH NO PUNCTUATION: ")
@@ -37,7 +30,6 @@ def main():
             for k,v in key.items():
                 if letter == k:
                     numerized_msg.append(v)
-                    # print(v)
         # print("numerized message:", numerized_msg)
         return numerized_msg
 
@@ -82,10 +74,10 @@ def main():
         for i in range(len(list_of_vectors)):
             vector = []
             # encrypted_list_of_vectors.append(numpy.dot(encryption_matrix, i))
-            print("i:", i)
-            print(list_of_vectors[i][0])
-            print(list_of_vectors[i][1])
-            print(list_of_vectors[i][2])
+            # print("i:", i)
+            # print(list_of_vectors[i][0])
+            # print(list_of_vectors[i][1])
+            # print(list_of_vectors[i][2])
 
             for j in range(len(encryption_matrix)):
                 # print("index j of encryption_matrix:", j)
@@ -100,15 +92,15 @@ def main():
         return encrypted_list_of_vectors
 
     def decrypt_message(encrypted_list_of_vectors):
-        print("Decrypting message . . .")
+        # print("Decrypting message . . .")
         decrypted_list_of_vectors = []
     
         for i in range(len(encrypted_list_of_vectors)):
             vector = []
             # print("i:", i)
-            print(encrypted_list_of_vectors[i][0])
-            print(encrypted_list_of_vectors[i][1])
-            print(encrypted_list_of_vectors[i][2])
+            # print(encrypted_list_of_vectors[i][0])
+            # print(encrypted_list_of_vectors[i][1])
+            # print(encrypted_list_of_vectors[i][2])
 
             for j in range(len(decryption_matrix)):
                 # print("index j of decryption matrix:", j)
@@ -131,7 +123,7 @@ def main():
                     if decrypted_list_of_vectors[i][j] == key[k]:
                         vector.append(k)
             translated_message.append(vector)
-        print("translated message:", translated_message)
+        print("Decrypted message:", translated_message)
         return translated_message
 
 
