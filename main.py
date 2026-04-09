@@ -1,5 +1,3 @@
-import numpy
-
 def main():
 
     encryption_matrix = [
@@ -19,19 +17,27 @@ def main():
 
 
     def get_message():
+
         msg = input("TYPE YOUR MESSAGE IN ALL CAPS WITH NO PUNCTUATION: ")
         return msg
 
     def numerize_message(msg):
+        '''
+        Iterate over characters in user-inputted string and create a list of numbers 
+        associated with the alphabetical letter.
+        '''
 
-        numerized_msg = []
-
-        for letter in msg:
-            for k,v in key.items():
-                if letter == k:
-                    numerized_msg.append(v)
-        # print("numerized message:", numerized_msg)
+        numerized_msg = [ v for s in msg for k,v in key.items() if s == k ]
+        print("numerized message:", numerized_msg)
         return numerized_msg
+
+        # numerized_msg = []
+        # for letter in msg:
+        #     for k,v in key.items():
+        #         if letter == k:
+        #             numerized_msg.append(v)
+        # print("numerized message:", numerized_msg)
+        # return numerized_msg
 
 
     def vectorize_numerized_msg(numerized_msg):
@@ -70,6 +76,7 @@ def main():
         '''
         Encrypt the numerized and vectorized input text using the encryption_matrix.
         '''
+        print("Encrypting message . . .")
         encrypted_list_of_vectors = []
         for i in range(len(list_of_vectors)):
             vector = []
@@ -88,11 +95,11 @@ def main():
 
             encrypted_list_of_vectors.append(vector)
 
-        print("encrypted_list_of_vectors", encrypted_list_of_vectors)
+        print("encrypted_list_of_vectors:", encrypted_list_of_vectors)
         return encrypted_list_of_vectors
 
     def decrypt_message(encrypted_list_of_vectors):
-        # print("Decrypting message . . .")
+        print("Decrypting message . . .")
         decrypted_list_of_vectors = []
     
         for i in range(len(encrypted_list_of_vectors)):
@@ -111,7 +118,7 @@ def main():
 
             decrypted_list_of_vectors.append(vector)
 
-        # print("decrypted_list_of_vectors", decrypted_list_of_vectors)
+        print("decrypted_list_of_vectors:", decrypted_list_of_vectors)
         return decrypted_list_of_vectors
     
     def translate_decrypted_message(decrypted_list_of_vectors):
@@ -123,7 +130,7 @@ def main():
                     if decrypted_list_of_vectors[i][j] == key[k]:
                         vector.append(k)
             translated_message.append(vector)
-        # print("Decrypted message:", translated_message)
+        print("Decrypted message:", translated_message)
         return translated_message
 
     def convert_matrix_to_str(translated_message):
@@ -137,8 +144,11 @@ def main():
     msg = get_message()
     numerized_msg = numerize_message(msg)
     list_of_vectors = vectorize_numerized_msg(numerized_msg)
+    print()
     encrypted_list_of_vectors = encrypt_message(list_of_vectors)
+    print()
     decrypted_list_of_vectors = decrypt_message(encrypted_list_of_vectors)
+    print()
     translated_message = translate_decrypted_message(decrypted_list_of_vectors)
     text = convert_matrix_to_str(translated_message)
 
