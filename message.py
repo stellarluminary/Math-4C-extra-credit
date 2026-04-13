@@ -1,7 +1,7 @@
 class Message:
-    ''''
+    '''
     Message class.
-    ''''
+    '''
     # Attributes of the entire class Message
     encryption_matrix = [
         [2,5,5],
@@ -34,7 +34,7 @@ class Message:
 
     def numerize_message(self):
 
-        self.numerized_msg = [ v for s in self.msg for k,v in key.items() if s == k ]
+        self.numerized_msg = [ v for s in self.msg for k,v in Message.key.items() if s == k ]
         print("numerized message:", self.numerized_msg)
         return self.numerized_msg
 
@@ -84,11 +84,11 @@ class Message:
             # print(list_of_vectors[i][1])
             # print(list_of_vectors[i][2])
 
-            for j in range(len(encryption_matrix)):
+            for j in range(len(Message.encryption_matrix)):
                 # print("index j of encryption_matrix:", j)
-                num = (self.list_of_vectors[i][0] * encryption_matrix[0][j]) + \
-                    (self.list_of_vectors[i][1] * encryption_matrix[1][j]) + \
-                    (self.list_of_vectors[i][2] * encryption_matrix[2][j])
+                num = (self.list_of_vectors[i][0] * Message.encryption_matrix[0][j]) + \
+                    (self.list_of_vectors[i][1] * Message.encryption_matrix[1][j]) + \
+                    (self.list_of_vectors[i][2] * Message.encryption_matrix[2][j])
                 vector.append(num)
 
             self.encrypted_list_of_vectors.append(vector)
@@ -107,11 +107,11 @@ class Message:
             # print(encrypted_list_of_vectors[i][1])
             # print(encrypted_list_of_vectors[i][2])
 
-            for j in range(len(decryption_matrix)):
+            for j in range(len(Message.decryption_matrix)):
                 # print("index j of decryption matrix:", j)
-                num = (self.encrypted_list_of_vectors[i][0] * decryption_matrix[0][j]) + \
-                    (self.encrypted_list_of_vectors[i][1] * decryption_matrix[1][j]) + \
-                    (self.encrypted_list_of_vectors[i][2] * decryption_matrix[2][j])
+                num = (self.encrypted_list_of_vectors[i][0] * Message.decryption_matrix[0][j]) + \
+                    (self.encrypted_list_of_vectors[i][1] * Message.decryption_matrix[1][j]) + \
+                    (self.encrypted_list_of_vectors[i][2] * Message.decryption_matrix[2][j])
                 vector.append(num)
 
             self.decrypted_list_of_vectors.append(vector)
@@ -124,8 +124,8 @@ class Message:
         for i in range(len(self.decrypted_list_of_vectors)):
             vector = []
             for j in range(len(self.decrypted_list_of_vectors[i])):
-                for k,v in key.items():
-                    if self.decrypted_list_of_vectors[i][j] == key[k]:
+                for k,v in Message.key.items():
+                    if self.decrypted_list_of_vectors[i][j] == Message.key[k]:
                         vector.append(k)
             self.translated_message.append(vector)
         # print("Decrypted message:", translated_message)
