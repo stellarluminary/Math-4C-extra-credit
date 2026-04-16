@@ -69,3 +69,13 @@ class TestMessage:
             ['S', 'O', 'M'], 
             ['E', ' ', ' ']
             ]
+
+    def test_covert_matrix_to_str(self):
+        m = Message("THE PASSWORD IS ZUCCHINI")
+        m.numerize_message()
+        m.vectorize_numerized_msg()
+        m.encrypt_message()
+        m.decrypt_message()
+        m.translate_decrypted_message()
+        te = m.convert_matrix_to_str()
+        assert te == "THE PASSWORD IS ZUCCHINI"
