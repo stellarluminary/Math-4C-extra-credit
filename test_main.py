@@ -17,4 +17,18 @@ class TestMessage:
         vm = m.vectorize_numerized_msg()
         assert vm ==  [[12, 9, 14], [5, 1, 18], [0, 1, 12], [7, 5, 2], [18, 1, 0]]
 
-
+    def test_encrypt_message(self):
+        m = Message("LINEAR ALGEBRA IS AWESOME")
+        m.numerize_message()
+        m.vectorize_numerized_msg()
+        em = m.encrypt_message()
+        assert em == [
+            [43, 107, 102], 
+            [45, 96, 79], 
+            [23, 47, 36], 
+            [13, 38, 41], 
+            [35, 89, 90], 
+            [-1, 26, 45], 
+            [-11, 2, 20], 
+            [49, 132, 134], 
+            [10, 25, 25]] 
