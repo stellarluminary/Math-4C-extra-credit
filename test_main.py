@@ -49,4 +49,23 @@ class TestMessage:
             [1, 23, 5], 
             [19, 15, 13], 
             [5, 0, 0]
-        ]        
+        ]
+
+    def test_translate_decrypted_message(self):
+        m = Message("LINEAR ALGEBRA IS AWESOME")
+        m.numerize_message()
+        m.vectorize_numerized_msg()
+        m.encrypt_message()
+        m.decrypt_message()
+        tm = m.translate_decrypted_message()
+        assert tm == [
+            ['L', 'I', 'N'], 
+            ['E', 'A', 'R'], 
+            [' ', 'A', 'L'], 
+            ['G', 'E', 'B'], 
+            ['R', 'A', ' '], 
+            ['I', 'S', ' '], 
+            ['A', 'W', 'E'], 
+            ['S', 'O', 'M'], 
+            ['E', ' ', ' ']
+            ]
