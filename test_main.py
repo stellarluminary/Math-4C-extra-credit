@@ -32,3 +32,21 @@ class TestMessage:
             [-11, 2, 20], 
             [49, 132, 134], 
             [10, 25, 25]] 
+
+    def test_decrypt_message(self):
+        m = Message("LINEAR ALGEBRA IS AWESOME")
+        m.numerize_message()
+        m.vectorize_numerized_msg()
+        m.encrypt_message()
+        dm = m.decrypt_message()
+        assert dm == [
+            [12, 9, 14], 
+            [5, 1, 18], 
+            [0, 1, 12], 
+            [7, 5, 2], 
+            [18, 1, 0], 
+            [9, 19, 0], 
+            [1, 23, 5], 
+            [19, 15, 13], 
+            [5, 0, 0]
+        ]        
