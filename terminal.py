@@ -17,41 +17,54 @@ from message import Message
 
 # def encrypt_message():
 #     Message.get_message()
-
+msg_objects = []
 raw_messages = []
+cipher_messages = []
 encrypted_messages = []
 
 
 def create_new(inp):
     msg = Message(inp)
+    msg_objects.append(msg)
+    raw_messages.append(msg.msg)
     msg.numerize_message()
     msg.vectorize_numerized_msg()
-    raw_messages.append(msg.list_of_vectors)
-    print("raw_messages in create_new", raw_messages)
+    cipher_messages.append(msg.list_of_vectors)
+    # print("raw_messages in create_new", raw_messages)
+    # print("cipher messages in create_new", cipher_messages)
     return msg
 
 def select_message_list():
     selecting = True
     chosen_list = []
     while selecting == True:
+        print("MESSAGE OBJECTS ENTER 0")
         print("USER MESSAGES ENTER 1")
-        print("ENCRYPTED MESSAGES ENTER 2")
-        choice = input("1 or 2? ")
-        if choice == "1":
-            chosen = raw_messages
+        print("CIPHER MESSAGES ENTER 2")
+        print("ENCRYPTED MESSAGES ENTER 3")
+        choice = input("0, 1, 2, OR 3? ")
+        if choice == "0":
+            chosen_list = msg_objects
+            selecting = False
+        elif choice == "1":
+            chosen_list = raw_messages
             selecting = False
         elif choice == "2":
-            chosen = encrypted_messages
+            chosen_list = cipher_messages
+            selecting = False
+        elif choice == "3":
+            chosen_list = encrypted_messages
             selecting = False
         else:
-            print("SORRY, PLEASE ENTER 1 OR 2")
+            print("SORRY, PLEASE ENTER 0, 1, 2, OR 3")
+    # print("Your chosen list: ", chosen_list)
     return chosen_list
 
 def select_message_from_list(lst):
     print("LIST OF MESSAGES:")
     for i in range(len(lst)):
         print(i, lst[i])
-    chosen_message_from_list = input("WHICH MESSAGE? ENTER INDEX ")
+    chosen_message_from_list = int(input("WHICH MESSAGE? ENTER INDEX "))
     return chosen_message_from_list
 
 # def select():
@@ -59,13 +72,15 @@ def select_message_from_list(lst):
 #     msg = select_message_from_list(chosen)
 #     return msg
 
-def encrypt(msg):
-    msg = msg.encrypt_message()
+def encrypt(msg_obj_idx):
+    print("message instance in msg_objects list", msg_objects[msg_obj_idx])
+    msg = msg_objects[msg_obj_idx].encrypt_message()
+    encrypted_messages.append(msg)
     return msg
 
-def decrypt(msg):
-    msg = msg.decrypt_message()
-    msg.translate_decrypted_message()
+def decrypt(msg_obj_idx):
+    msg_objects[msg_obj_idx].decrypt_message()
+    msg = msg_objects[msg_obj_idx].translate_decrypted_message()
     return msg
 
 # def save(msg):
@@ -75,7 +90,7 @@ def decrypt(msg):
 def view():
     chosen_list = select_message_list()
     for i in range(len(chosen_list)):
-        print(i)
+        print(chosen_list[i])
 
 # def quit_program():
 #     active = False
@@ -97,7 +112,7 @@ def main():
         print()
         user_choice = input("TYPE CHOICE IN ALL CAPS ")
         if user_choice == "CREATE NEW":
-            user_message = input("ENTER MESSAGE:")
+            user_message = input("ENTER MESSAGE: ")
             create_new(user_message)
 
         elif user_choice == "ENCRYPT":
