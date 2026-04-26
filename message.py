@@ -27,6 +27,8 @@ class Message:
         self.decrypted_list_of_vectors = []
         self.translated_message = []
 
+    def __str__(self):
+        return "Message instance"
 
     # def get_message():
     #     msg = input("TYPE YOUR MESSAGE IN ALL CAPS WITH NO PUNCTUATION: ")
