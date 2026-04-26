@@ -26,23 +26,38 @@ def create_new(inp):
     msg = Message(inp)
     msg.numerize_message()
     msg.vectorize_numerized_msg()
-    raw_messages.append(msg)
+    raw_messages.append(msg.list_of_vectors)
+    print("raw_messages in create_new", raw_messages)
     return msg
 
-# def select_message_list():
-#     selecting = True
-#     while selecting == True:
-#         print("User messages enter 1")
-#         print("Encrypted messages enter 2")
-#         choice = input("1 or 2?")
-#         if choice == 1:
-#             selecting = False
-#             return raw_messages
-#         elif choice == 2:
-#             selecting = False
-#             return encrypted_messages
-#         else:
-#             print("SORRY, PLEASE ENTER 1 OR 2")
+def select_message_list():
+    selecting = True
+    chosen_list = []
+    while selecting == True:
+        print("USER MESSAGES ENTER 1")
+        print("ENCRYPTED MESSAGES ENTER 2")
+        choice = input("1 or 2? ")
+        if choice == "1":
+            chosen = raw_messages
+            selecting = False
+        elif choice == "2":
+            chosen = encrypted_messages
+            selecting = False
+        else:
+            print("SORRY, PLEASE ENTER 1 OR 2")
+    return chosen_list
+
+def select_message_from_list(lst):
+    print("LIST OF MESSAGES:")
+    for i in range(len(lst)):
+        print(i, lst[i])
+    chosen_message_from_list = input("WHICH MESSAGE? ENTER INDEX ")
+    return chosen_message_from_list
+
+# def select():
+#     chosen = select_message_list()
+#     msg = select_message_from_list(chosen)
+#     return msg
 
 def encrypt(msg):
     msg = msg.encrypt_message()
@@ -58,8 +73,9 @@ def decrypt(msg):
 #     print("SAVED TO MESSAGES")
 
 def view():
-    print("SAVED MESSAGES")
-    print(raw_messages)
+    chosen_list = select_message_list()
+    for i in range(len(chosen_list)):
+        print(i)
 
 # def quit_program():
 #     active = False
@@ -68,9 +84,9 @@ def view():
 
 def main():
     active = True
+    print("WELCOME TO THE HILL CIPHER CRYPTOGRAPHY TERMINAL")
+    print()
     while active:
-        print("WELCOME TO THE HILL CIPHER CRYPTOGRAPHY TERMINAL")
-        print()
         print("COMMANDS:")
         print()
         print("CREATE NEW")
@@ -82,12 +98,14 @@ def main():
         user_choice = input("TYPE CHOICE IN ALL CAPS ")
         if user_choice == "CREATE NEW":
             user_message = input("ENTER MESSAGE:")
-            msg = create_new(user_message)
+            create_new(user_message)
 
         elif user_choice == "ENCRYPT":
+            msg = select_message_from_list(raw_messages)
             encrypt(msg)
         
         elif user_choice == "DECRYPT":
+            msg = select_message_from_list(encrypted_messages) 
             decrypt(msg)
 
         elif user_choice == "VIEW":
