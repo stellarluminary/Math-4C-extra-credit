@@ -37,7 +37,7 @@ class Message:
     def numerize_message(self):
 
         self.numerized_msg = [ v for s in self.msg for k,v in Message.key.items() if s == k ]
-        print("numerized message:", self.numerized_msg)
+        # print("numerized message:", self.numerized_msg)
         return self.numerized_msg
 
 
@@ -95,7 +95,7 @@ class Message:
 
             self.encrypted_list_of_vectors.append(vector)
 
-        print("encrypted_list_of_vectors", self.encrypted_list_of_vectors)
+        # print("encrypted_list_of_vectors", self.encrypted_list_of_vectors)
         return self.encrypted_list_of_vectors
 
     def decrypt_message(self):
@@ -118,7 +118,7 @@ class Message:
 
             self.decrypted_list_of_vectors.append(vector)
 
-        print("decrypted_list_of_vectors", self.decrypted_list_of_vectors)
+        # print("decrypted_list_of_vectors", self.decrypted_list_of_vectors)
         return self.decrypted_list_of_vectors
     
     def translate_decrypted_message(self):
@@ -130,7 +130,7 @@ class Message:
                     if self.decrypted_list_of_vectors[i][j] == Message.key[k]:
                         vector.append(k)
             self.translated_message.append(vector)
-        print("Decrypted message:", self.translated_message)
+        print("DECRYPTED MESSAGE:", self.translated_message)
         return self.translated_message
 
     def convert_matrix_to_str(self):
@@ -138,7 +138,7 @@ class Message:
         for i in range(len(self.translated_message)):
             for j in range(len(self.translated_message[i])):
                 text += self.translated_message[i][j]
-        print("Decrypted message:", text)
+        print("DECRYPTED MESSAGE:", text)
         return text
 
 

@@ -42,6 +42,7 @@ def select_message_list():
         print("USER MESSAGES ENTER 1")
         print("CIPHER MESSAGES ENTER 2")
         print("ENCRYPTED MESSAGES ENTER 3")
+        print()
         choice = input("0, 1, 2, OR 3? ")
         if choice == "0":
             chosen_list = msg_objects
@@ -62,8 +63,10 @@ def select_message_list():
 
 def select_message_from_list(lst):
     print("LIST OF MESSAGES:")
+    print()
     for i in range(len(lst)):
         print(i, lst[i])
+    print()
     chosen_message_from_list = int(input("WHICH MESSAGE? ENTER INDEX "))
     return chosen_message_from_list
 
@@ -73,7 +76,7 @@ def select_message_from_list(lst):
 #     return msg
 
 def encrypt(msg_obj_idx):
-    print("message instance in msg_objects list", msg_objects[msg_obj_idx])
+    # print("message instance in msg_objects list", msg_objects[msg_obj_idx])
     msg = msg_objects[msg_obj_idx].encrypt_message()
     encrypted_messages.append(msg)
     return msg
@@ -90,6 +93,7 @@ def decrypt(msg_obj_idx):
 def view():
     chosen_list = select_message_list()
     for i in range(len(chosen_list)):
+        print()
         print(chosen_list[i])
 
 # def quit_program():
@@ -102,7 +106,7 @@ def main():
     print("WELCOME TO THE HILL CIPHER CRYPTOGRAPHY TERMINAL")
     print()
     while active:
-        print("COMMANDS:")
+        print("OPTIONS:")
         print()
         print("CREATE NEW")
         print("ENCRYPT")
@@ -112,7 +116,7 @@ def main():
         print()
         user_choice = input("TYPE CHOICE IN ALL CAPS ")
         if user_choice == "CREATE NEW":
-            user_message = input("ENTER MESSAGE: ")
+            user_message = input("ENTER MESSAGE IN ALL CAPS AND NO PUNCTUATION: ")
             create_new(user_message)
 
         elif user_choice == "ENCRYPT":
