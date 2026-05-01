@@ -42,7 +42,9 @@ def main():
 
 
     def vectorize_numerized_msg(numerized_msg):
-        # print("Turn numerized message into a list of 1x3 vectors.")
+        """
+        Iterate over list of numerized characters to create a new list of 1x3 matrices.
+        """
         list_of_vectors = []
         # length_of_numerized_msg = len(numerized_msg)
 
@@ -75,7 +77,8 @@ def main():
 
     def encrypt_message(list_of_vectors):
         '''
-        Encrypt the numerized and vectorized input text using the encryption_matrix.
+        Encrypt the numerized and vectorized input text by right matrix multiplying each
+        1x3 vector by the encryption_matrix.
         '''
         print("Encrypting message . . .")
         encrypted_list_of_vectors = []
@@ -100,6 +103,11 @@ def main():
         return encrypted_list_of_vectors
 
     def decrypt_message(encrypted_list_of_vectors):
+        """
+        Decrypt the ciphertext by right matrix multiplying each 1x3 vector by the 
+        decryption_matrix.
+        """
+
         print("Decrypting message . . .")
         decrypted_list_of_vectors = []
     
@@ -151,7 +159,9 @@ def main():
     decrypted_list_of_vectors = decrypt_message(encrypted_list_of_vectors)
     print()
     translated_message = translate_decrypted_message(decrypted_list_of_vectors)
+    print()
     text = convert_matrix_to_str(translated_message)
+    print()
 
 if __name__ == "__main__":
     main()
