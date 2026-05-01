@@ -40,7 +40,7 @@ def select_message_list():
     while selecting == True:
         print("MESSAGE OBJECTS ENTER 0")
         print("USER MESSAGES ENTER 1")
-        print("CIPHER MESSAGES ENTER 2")
+        print("NUMERIZED MESSAGES ENTER 2")
         print("ENCRYPTED MESSAGES ENTER 3")
         print()
         choice = input("0, 1, 2, OR 3? ")
@@ -115,6 +115,7 @@ def main():
         print("QUIT")
         print()
         user_choice = input("TYPE CHOICE IN ALL CAPS ")
+        print()
         if user_choice == "CREATE NEW":
             user_message = input("ENTER MESSAGE IN ALL CAPS AND NO PUNCTUATION: ")
             create_new(user_message)
