@@ -18,66 +18,68 @@ from message import Message
 # def encrypt_message():
 #     Message.get_message()
 msg_objects = []
-raw_messages = []
-cipher_messages = []
+# raw_messages = []
+# cipher_messages = []
 encrypted_messages = []
 
 
 def create_new(inp):
     msg = Message(inp)
-    msg_objects.append(msg)
-    raw_messages.append(msg.msg)
     msg.numerize_message()
     msg.vectorize_numerized_msg()
-    cipher_messages.append(msg.list_of_vectors)
+    msg_objects.append(msg)
+    # raw_messages.append(msg.msg)
+    # cipher_messages.append(msg.list_of_vectors)
     # print("raw_messages in create_new", raw_messages)
     # print("cipher messages in create_new", cipher_messages)
     return msg
 
-def select_message_list():
+def select_message_list_to_view():
     selecting = True
     chosen_list = []
     while selecting == True:
-        print("MESSAGE OBJECTS ENTER 0")
-        print("USER MESSAGES ENTER 1")
-        print("NUMERIZED MESSAGES ENTER 2")
-        print("ENCRYPTED MESSAGES ENTER 3")
+        print("USER MESSAGES ENTER 0")
+        print("NUMERIZED MESSAGES ENTER 1")
+        print("ENCRYPTED MESSAGES ENTER 2")
         print()
-        choice = input("0, 1, 2, OR 3? ")
+        choice = input("0, 1, OR 2? ")
         if choice == "0":
-            chosen_list = msg_objects
+            chosen_list = [ m.msg for m in msg_objects ]
             selecting = False
         elif choice == "1":
-            chosen_list = raw_messages
+            # chosen_list = cipher_messages
+            chosen_list = [ m.list_of_vectors for m in msg_objects ]
             selecting = False
         elif choice == "2":
-            chosen_list = cipher_messages
-            selecting = False
-        elif choice == "3":
-            chosen_list = encrypted_messages
+            # chosen_list = encrypted_messages
+            chosen_list = [ m.encrypted_list_of_vectors for m in msg_objects ]
             selecting = False
         else:
-            print("SORRY, PLEASE ENTER 0, 1, 2, OR 3")
+            print("SORRY, PLEASE ENTER 0, 1, OR 2")
     # print("Your chosen list: ", chosen_list)
     return chosen_list
 
-def select_message_from_list(lst):
+def select_message_for_processing(choice):
     print("LIST OF MESSAGES:")
     print()
-    for i in range(len(lst)):
-        print(i, lst[i])
-    print()
-    chosen_message_from_list = int(input("WHICH MESSAGE? ENTER INDEX "))
-    return chosen_message_from_list
+    if choice == 1:
+        # If the user chooses to encrypt
+        for i in range(len(msg_objects)):
+            print(i, msg_objects[i].msg)
+        print()
+    else:
+        # If the user chooses to decrypt
+        for i in range(len(msg_objects)):
+            print(i, msg_objects[i].encrypted_list_of_vectors)
+        print()        
+    msg_obj_idx = int(input("WHICH MESSAGE? ENTER INDEX "))
+    return msg_obj_idx
 
-# def select():
-#     chosen = select_message_list()
-#     msg = select_message_from_list(chosen)
-#     return msg
 
 def encrypt(msg_obj_idx):
-    # print("message instance in msg_objects list", msg_objects[msg_obj_idx])
+    # print("encrypt function: msg_objects[msg_obj_idx]", msg_objects[msg_obj_idx])
     msg = msg_objects[msg_obj_idx].encrypt_message()
+    print("MESSAGE ENCRYPTED:", msg_objects[msg_obj_idx].encrypted_list_of_vectors)
     encrypted_messages.append(msg)
     return msg
 
@@ -86,20 +88,13 @@ def decrypt(msg_obj_idx):
     msg = msg_objects[msg_obj_idx].translate_decrypted_message()
     return msg
 
-# def save(msg):
-#     raw_messages.append(msg)
-#     print("SAVED TO MESSAGES")
 
 def view():
-    chosen_list = select_message_list()
+    chosen_list = select_message_list_to_view()
     for i in range(len(chosen_list)):
         print()
         print(chosen_list[i])
 
-# def quit_program():
-#     active = False
-#     print("QUIT")
-#     return 
 
 def main():
     active = True
@@ -119,41 +114,26 @@ def main():
         if user_choice == "CREATE NEW":
             user_message = input("ENTER MESSAGE IN ALL CAPS AND NO PUNCTUATION: ")
             create_new(user_message)
+            print()
 
         elif user_choice == "ENCRYPT":
-            msg = select_message_from_list(raw_messages)
-            encrypt(msg)
+            msg_obj_idx = select_message_for_processing(1)
+            encrypt(msg_obj_idx)
+            print()
         
         elif user_choice == "DECRYPT":
-            msg = select_message_from_list(encrypted_messages) 
-            decrypt(msg)
+            msg_obj_idx = select_message_for_processing(2) 
+            decrypt(msg_obj_idx)
+            print()
 
         elif user_choice == "VIEW":
             view()
+            print()
 
         elif user_choice == "QUIT":
-            # quit_program()
             print("THANK YOU FOR USING THE HILL CIPHER CRYPTOGRAPHY TERMINAL")
+            print()
             active = False
-
-        # msg = Message("LINEAR ALGEBRA IS AWESOME")
-        # msg.numerize_message()
-        # msg.vectorize_numerized_msg()
-        # msg.encrypt_message()
-        # msg.decrypt_message()
-        # msg.translate_decrypted_message()
-        # msg.convert_matrix_to_str()
-
-        # print()
-        # print("------------------------")
-        # print()
-        # m = Message("MAKE SURE TO KNOW THE DEFINITIONS")
-        # m.numerize_message()
-        # m.vectorize_numerized_msg()
-        # m.encrypt_message()
-        # m.decrypt_message()
-        # m.translate_decrypted_message()
-        # m.convert_matrix_to_str()    
 
 
 if __name__ == "__main__":
